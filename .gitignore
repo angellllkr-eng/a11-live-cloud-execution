@@ -9,3 +9,6 @@ A11-OWNER-RUNTIME/.venv/
 .agents/
 .claude/
 *.log
+A11-OWNER-RUNTIME/serve.stderr.log
+A11-OWNER-RUNTIME/serve.stdout.log
+A11-OWNER-RUNTIME/*.log
