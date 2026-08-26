@@ -1,0 +1,16 @@
+{
+  "status": "PROVEN",
+  "owner": "\u0421\u043e\u0444\u0438\u044f Tech Register EOOD",
+  "brand": "A11",
+  "component": "alphaevolve-local-evaluator",
+  "runs": 1000,
+  "elapsed_seconds": 6.196758599999157,
+  "mean_milliseconds": 6.196758599999157,
+  "evaluations_per_second": 161.37469030988814,
+  "metric": "sum_of_radii",
+  "deterministic": true,
+  "score": 0.9414554065860813,
+  "generated_at": "2026-08-26T14:58:22.322060+00:00",
+  "execution": "LOCAL_ONLY",
+  "cloud_alphaevolve": "GATED"
+}

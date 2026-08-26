@@ -1,0 +1,209 @@
+{
+  "owner": "София Tech Register EOOD",
+  "brand": "A11 / MindReply",
+  "portfolio": "A11-K.space",
+  "canonical_workspace": "C:\\Users\\ANGEL\\MRPRODUCTION",
+  "active_snapshot": "C:\\Users\\ANGEL\\OneDrive\\Desktop\\google-cloud-ceo-stack-2026-08-23",
+  "rule": "NEVER GET STUCK. If Plan A fails, execute Plan B immediately. Continue A→Z. Q is always the emergency backup lane.",
+  "status_vocab": ["PROVEN", "READY", "BLOCKED", "FAILED", "UNVERIFIED", "GATED"],
+  "safety": {
+    "loopback_only": true,
+    "no_secret_exfil": true,
+    "no_billing_mutation": true,
+    "no_iam_dns_deploy_without_owner_gate": true
+  },
+  "live_surfaces": {
+    "evaluator": "http://127.0.0.1:8765",
+    "monitor": "http://127.0.0.1:8766"
+  },
+  "model_select_ui": {
+    "gemini-3.7": "GATED_REMOTE / LOCAL_LABEL",
+    "grok-6": "GATED_REMOTE / LOCAL_LABEL",
+    "sol-5.6": "GATED_REMOTE / LOCAL_LABEL",
+    "nvidia-pro": "GATED_REMOTE / LOCAL_LABEL"
+  },
+  "routes": {
+    "A": {
+      "name": "Local seed proof",
+      "command": ".\\A11-OWNER-RUNTIME\\PROVE.ps1",
+      "class": "SAFE LOCAL",
+      "on_fail": "B"
+    },
+    "B": {
+      "name": "Local benchmark",
+      "command": ".\\A11-OWNER-RUNTIME\\BENCHMARK.ps1",
+      "class": "SAFE LOCAL",
+      "on_fail": "C"
+    },
+    "C": {
+      "name": "Local evaluator service",
+      "command": ".\\A11-OWNER-RUNTIME\\SERVE.ps1",
+      "url": "http://127.0.0.1:8765/healthz",
+      "class": "SAFE LOCAL",
+      "on_fail": "D"
+    },
+    "D": {
+      "name": "Live visual monitor",
+      "command": ".\\A11-OWNER-RUNTIME\\MONITOR.ps1",
+      "url": "http://127.0.0.1:8766",
+      "class": "SAFE LOCAL",
+      "on_fail": "E"
+    },
+    "E": {
+      "name": "Full pytest suite",
+      "command": ".\\alphaevolve-on-googlecloud\\.venv\\Scripts\\python.exe -m pytest alphaevolve-on-googlecloud -q",
+      "class": "SAFE LOCAL",
+      "on_fail": "F"
+    },
+    "F": {
+      "name": "Circle packing evaluator tests only",
+      "command": ".\\alphaevolve-on-googlecloud\\.venv\\Scripts\\python.exe -m pytest alphaevolve-on-googlecloud\\skills\\alpha_evolve_experiment_design\\examples\\circle_packing\\test_evaluator.py -q",
+      "class": "SAFE LOCAL",
+      "on_fail": "G"
+    },
+    "G": {
+      "name": "Direct seed python proof",
+      "command": ".\\alphaevolve-on-googlecloud\\.venv\\Scripts\\python.exe .\\A11-OWNER-RUNTIME\\prove_seed.py",
+      "class": "SAFE LOCAL",
+      "on_fail": "H"
+    },
+    "H": {
+      "name": "Read-only cloud preflight",
+      "command": ".\\A11-OWNER-RUNTIME\\CLOUD-PREFLIGHT.ps1",
+      "class": "SAFE LOCAL",
+      "on_fail": "I"
+    },
+    "I": {
+      "name": "Status artifact refresh",
+      "writes": ["STATUS.md", "PROOF.json", "BENCHMARK.json", "CLOUD-PREFLIGHT.json"],
+      "class": "SAFE LOCAL",
+      "on_fail": "J"
+    },
+    "J": {
+      "name": "Historical evidence preserve",
+      "action": "Copy current evidence to *-HISTORICAL-*.json before overwrite",
+      "class": "SAFE LOCAL",
+      "on_fail": "K"
+    },
+    "K": {
+      "name": "Portable path repair",
+      "action": "Replace hardcoded Desktop roots with $PSScriptRoot / relative roots",
+      "class": "SAFE LOCAL",
+      "on_fail": "L"
+    },
+    "L": {
+      "name": "Venv recovery",
+      "action": "Recreate alphaevolve-on-googlecloud\\.venv using bundled/local Python only",
+      "class": "SAFE LOCAL",
+      "on_fail": "M"
+    },
+    "M": {
+      "name": "Google Cloud SDK Python fallback",
+      "action": "Use preinstalled Google Cloud SDK Python if system python/uv blocked",
+      "class": "SAFE LOCAL",
+      "on_fail": "N"
+    },
+    "N": {
+      "name": "WSL fallback for Linux-only tools",
+      "action": "Use WSL only when Windows native path fails for toolkit binaries",
+      "class": "OWNER-GATED if installing packages",
+      "on_fail": "O"
+    },
+    "O": {
+      "name": "Docs/codelab offline path",
+      "action": "Operate from local docs/ + cached HTML only; no cloud calls",
+      "class": "SAFE LOCAL",
+      "on_fail": "P"
+    },
+    "P": {
+      "name": "Snapshot isolation mode",
+      "action": "Treat Desktop snapshot as immutable reference; write only under A11-OWNER-RUNTIME",
+      "class": "SAFE LOCAL",
+      "on_fail": "Q"
+    },
+    "Q": {
+      "name": "EMERGENCY BACKUP LANE",
+      "class": "SAFE LOCAL",
+      "always_available": true,
+      "actions": [
+        "Stop claiming blocked if any local proof still runs",
+        "Serve monitor on next free loopback port 8767-8770",
+        "Write FAIL-FORWARD.json with exact error + next route",
+        "Open MONITOR.md + STATUS.md as human fallback UI",
+        "Keep cloud path GATED; continue local value"
+      ],
+      "on_fail": "R"
+    },
+    "R": {
+      "name": "Canonical workspace handoff",
+      "action": "Copy only proven runtime artifacts into C:\\Users\\ANGEL\\MRPRODUCTION\\reports with timestamp",
+      "class": "SAFE LOCAL",
+      "on_fail": "S"
+    },
+    "S": {
+      "name": "Read-only gcloud identity check",
+      "command": "gcloud auth list; gcloud projects describe mind-reply-496111",
+      "class": "SAFE LOCAL",
+      "on_fail": "T"
+    },
+    "T": {
+      "name": "Owner-gated ADC login",
+      "command": "gcloud auth application-default login",
+      "class": "OWNER-GATED",
+      "on_fail": "U"
+    },
+    "U": {
+      "name": "Owner-gated billing attach",
+      "action": "Owner attaches billing to mind-reply-496111",
+      "class": "OWNER-GATED",
+      "on_fail": "V"
+    },
+    "V": {
+      "name": "Owner-gated GE_APP_ID set",
+      "action": "Replace only GE_APP_ID=UNVERIFIED with real Engine/App ID",
+      "class": "OWNER-GATED",
+      "on_fail": "W"
+    },
+    "W": {
+      "name": "Owner-gated API enable review",
+      "action": "Consider discoveryengine.googleapis.com enable only after T+U+V PROVEN",
+      "class": "OWNER-GATED",
+      "on_fail": "X"
+    },
+    "X": {
+      "name": "Remote AlphaEvolve dry-run design",
+      "action": "Prepare remote run plan without executing mutations",
+      "class": "SAFE LOCAL",
+      "on_fail": "Y"
+    },
+    "Y": {
+      "name": "Owner-gated remote execution",
+      "action": "Execute remote AlphaEvolve only with explicit CEO approval",
+      "class": "OWNER-GATED",
+      "on_fail": "Z"
+    },
+    "Z": {
+      "name": "Full stop + evidence seal",
+      "action": "Seal PROOF/BENCHMARK/STATUS/MONITOR evidence, report blockers, no silent retry loops",
+      "class": "SAFE LOCAL",
+      "on_fail": "Q"
+    }
+  },
+  "agent_contract": {
+    "every_agent_must": [
+      "Read this file first",
+      "Pick the strongest available route",
+      "On failure jump to on_fail immediately",
+      "Use Q if uncertain",
+      "Report only PROVEN/READY/BLOCKED/FAILED/UNVERIFIED/GATED",
+      "Never invent cloud success",
+      "Never expose secrets"
+    ],
+    "forbidden": [
+      "Stop after one failed plan",
+      "Wait idly when a local alternative exists",
+      "Deploy/public bind without owner gate",
+      "Substitute project id/number/sa email for GE_APP_ID"
+    ]
+  }
+}

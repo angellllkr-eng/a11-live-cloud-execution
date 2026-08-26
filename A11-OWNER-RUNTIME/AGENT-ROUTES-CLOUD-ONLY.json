@@ -1,0 +1,199 @@
+{
+  "owner": "София Tech Register EOOD",
+  "brand": "A11 / MindReply",
+  "portfolio": "A11-K.space",
+  "execution_mode": "CLOUD-NATIVE-ONLY",
+  "cloud_platforms": ["google-cloud-enterprise", "github", "supabase", "onedrive", "google-drive", "aws"],
+  "rule": "NEVER GET STUCK. If Plan A fails, execute Plan B immediately. Continue A→Z. Q is always the emergency backup lane.",
+  "status_vocab": ["PROVEN", "READY", "BLOCKED", "FAILED", "UNVERIFIED", "GATED"],
+  "safety": {
+    "zero_local_work": true,
+    "cloud_only_execution": true,
+    "no_secret_exfil": true,
+    "verified_credentials_only": true
+  },
+  "model_selection": {
+    "gemini-3.7": {
+      "provider": "Google Vertex AI",
+      "endpoint": "https://us-central1-aiplatform.googleapis.com/v1/projects/{projectId}/locations/us-central1/models/gemini-3-5-pro",
+      "auth": "google-cloud-service-account",
+      "status": "GATED"
+    },
+    "grok-6": {
+      "provider": "xAI",
+      "endpoint": "https://api.x.ai/v1/models/grok-6",
+      "auth": "xai-api-key",
+      "status": "GATED"
+    },
+    "sol-5.6": {
+      "provider": "A11 catalog",
+      "endpoint": "https://api.a11-k.space/v1/models/sol-5.6",
+      "auth": "a11-bearer-token",
+      "status": "GATED"
+    },
+    "nvidia-pro": {
+      "provider": "NVIDIA NIM Enterprise",
+      "endpoint": "https://api-inference.nvidia.com/v1/models/nvidia-pro",
+      "auth": "nvidia-api-key",
+      "status": "GATED"
+    }
+  },
+  "cloud_routes": {
+    "A": {
+      "name": "GitHub Actions: push proof to main",
+      "platform": "GitHub",
+      "action": "REST API commit to repos",
+      "cloud": "PROVEN",
+      "on_fail": "B"
+    },
+    "B": {
+      "name": "Google Cloud: Vertex AI pipeline seed proof",
+      "platform": "Google Cloud Enterprise",
+      "service": "Vertex AI Pipelines",
+      "runtime": "Cloud Run",
+      "on_fail": "C"
+    },
+    "C": {
+      "name": "GitHub Actions CI: run tests on push",
+      "platform": "GitHub",
+      "action": "Actions workflow + artifact upload",
+      "cloud": "PROVEN",
+      "on_fail": "D"
+    },
+    "D": {
+      "name": "Google Cloud Storage: mirror all artifacts",
+      "platform": "Google Cloud Enterprise",
+      "service": "GCS bucket gs://sophia-tech-register/",
+      "on_fail": "E"
+    },
+    "E": {
+      "name": "Supabase: store artifact metadata + proofs",
+      "platform": "Supabase PostgreSQL",
+      "schema": "artifacts(id, name, hash, cloud_path, model, proven_timestamp, owner)",
+      "on_fail": "F"
+    },
+    "F": {
+      "name": "Google Drive: shared folder + versioning",
+      "platform": "Google Drive API",
+      "folder": "A11-CEO-Stack-Reports",
+      "on_fail": "G"
+    },
+    "G": {
+      "name": "OneDrive: Microsoft Graph sync",
+      "platform": "Microsoft OneDrive",
+      "path": "/Apps/A11-Reports/",
+      "on_fail": "H"
+    },
+    "H": {
+      "name": "AWS S3: emergency backup + CloudFront",
+      "platform": "AWS",
+      "bucket": "s3://sophia-tech-register-backups/",
+      "cdn": "CloudFront distribution",
+      "on_fail": "I"
+    },
+    "I": {
+      "name": "GitHub releases: publish signed artifacts",
+      "platform": "GitHub",
+      "action": "Release API + GPG signing",
+      "on_fail": "J"
+    },
+    "J": {
+      "name": "Vertex AI: BigQuery load proven metrics",
+      "platform": "Google Cloud Enterprise",
+      "service": "BigQuery dataset a11_proven",
+      "on_fail": "K"
+    },
+    "K": {
+      "name": "Cloud Run: live dashboard + model selector",
+      "platform": "Google Cloud Enterprise",
+      "service": "Cloud Run service a11-monitor",
+      "models_available": ["gemini-3.7", "grok-6", "sol-5.6", "nvidia-pro"],
+      "on_fail": "L"
+    },
+    "L": {
+      "name": "GitHub Codespaces: dev environment",
+      "platform": "GitHub",
+      "action": "Spin up authenticated Codespace + preload credentials",
+      "on_fail": "M"
+    },
+    "M": {
+      "name": "Supabase Realtime: live proof feed",
+      "platform": "Supabase",
+      "action": "WebSocket subscription to artifact_updated events",
+      "on_fail": "N"
+    },
+    "N": {
+      "name": "AWS Lambda: scheduled proof runs",
+      "platform": "AWS",
+      "trigger": "CloudWatch Events cron",
+      "on_fail": "O"
+    },
+    "O": {
+      "name": "Google Cloud Logging: audit trail + alerting",
+      "platform": "Google Cloud Enterprise",
+      "service": "Cloud Logging + Cloud Monitoring",
+      "on_fail": "P"
+    },
+    "P": {
+      "name": "GitHub Secrets: rotate credentials",
+      "platform": "GitHub",
+      "action": "Manage PAT + cloud service account keys",
+      "on_fail": "Q"
+    },
+    "Q": {
+      "name": "EMERGENCY BACKUP LANE",
+      "cloud": true,
+      "always_available": true,
+      "actions": [
+        "Switch to next cloud platform in list",
+        "Failover S3 → GCS → OneDrive → Google Drive",
+        "Write failure log to Supabase audit table",
+        "Trigger GitHub issue auto-creation",
+        "Alert via Cloud Monitoring + email"
+      ],
+      "on_fail": "R"
+    },
+    "R": {
+      "name": "Owner notification: escalate to CEO",
+      "platform": "Multi-channel",
+      "action": "Email + Slack + SMS via AWS SNS",
+      "on_fail": "Z"
+    },
+    "Z": {
+      "name": "Seal evidence + stop",
+      "action": "Lock artifacts to read-only, tag as BLOCKED, no retry loops"
+    }
+  },
+  "github_repos": {
+    "main": "github.com/ANGEL/a11-alphaevolve-enterprise",
+    "branches": ["main", "feature/model-selection", "feature/cloud-routes"],
+    "actions": [
+      "commit AGENT-ROUTES-CLOUD.json",
+      "commit PROOF-*.json artifacts",
+      "commit serve_monitor.py source",
+      "commit monitor/index.html",
+      "run tests on push",
+      "create release with artifacts"
+    ]
+  },
+  "agent_contract": {
+    "every_agent_must": [
+      "Read this cloud config file first",
+      "Zero local work allowed",
+      "Use GitHub REST API or cloud platform SDKs only",
+      "Pick the strongest available cloud route",
+      "On failure jump to on_fail immediately",
+      "Use Q if uncertain",
+      "Report only PROVEN/READY/BLOCKED/FAILED/UNVERIFIED/GATED",
+      "Never invent cloud success",
+      "Never expose secrets, keys, or credentials"
+    ],
+    "forbidden": [
+      "Run local scripts, PowerShell, Python",
+      "Deploy to localhost or 127.0.0.1",
+      "Create local files or directories",
+      "Attach to Windows services",
+      "Stop after one failed cloud plan"
+    ]
+  }
+}

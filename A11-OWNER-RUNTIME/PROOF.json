@@ -1,0 +1,25 @@
+{
+  "status": "PROVEN",
+  "owner": "София Tech Register EOOD",
+  "brand": "A11",
+  "portfolio": "A11-K.space",
+  "project_id": "mind-reply-496111",
+  "account": "mind-reply@mind-reply-496111.iam.gserviceaccount.com",
+  "component": "alphaevolve-circle-packing-seed-evaluator",
+  "metric": "sum_of_radii",
+  "score": 0.9414554065860813,
+  "generated_at": "2026-08-26T14:58:06.078524+00:00",
+  "billing_enabled": false,
+  "discovery_engine": "GATED",
+  "gemini_enterprise_app_id": "UNVERIFIED",
+  "cluster_toolkit": "GATED",
+  "zapier_mcp": "FAILED",
+  "commercial_paths": {
+    "A11 Signal": "https://buy.stripe.com/eVq14h6wEb042XK5Oy63K06",
+    "A11 Operator": "https://buy.stripe.com/00w8wJg7e6JO55Sfp863K05",
+    "A11 Council": "https://buy.stripe.com/6oUeV7bQYgkocyk3Gq63K04",
+    "Repository Reality Engine": "https://book.stripe.com/8x2dR36wEb04aqc90K63K03",
+    "PATCH Revenue Engine": "https://book.stripe.com/00wdR3aMUfgkbugel463K02",
+    "GitHub + Python Profit Audit": "https://book.stripe.com/8x2aER4owd8c1TG4Ku63K00"
+  }
+}
