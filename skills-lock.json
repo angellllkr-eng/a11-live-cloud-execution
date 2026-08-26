@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "github-actions-templates": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/cicd-automation/skills/github-actions-templates/SKILL.md",
+      "computedHash": "d57f2a45525180e30d9130aeab1613930c274917c5002899d8c37185594de411"
+    },
+    "jetson-inference-mem-tune": {
+      "source": "nvidia/skills",
+      "sourceType": "github",
+      "skillPath": "skills/jetson-inference-mem-tune/SKILL.md",
+      "computedHash": "b9354d9574a2414bfb1d15745bf7f87e870384395df1beb8dc75565ab087719f"
+    },
+    "jetson-llm-benchmark": {
+      "source": "nvidia/skills",
+      "sourceType": "github",
+      "skillPath": "skills/jetson-llm-benchmark/SKILL.md",
+      "computedHash": "7bd83771b242a6cf29f3ba1e33a7a523a671f8653987dc3ee12b6f3b14680cf9"
+    },
+    "jetson-llm-serve": {
+      "source": "nvidia/skills",
+      "sourceType": "github",
+      "skillPath": "skills/jetson-llm-serve/SKILL.md",
+      "computedHash": "ce310ed53a2f2ebda98503c13c23245566e4aa996d8b4d222479121e60668eb7"
+    },
+    "nemo-automodel-distributed-training": {
+      "source": "nvidia/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemo-automodel-distributed-training/SKILL.md",
+      "computedHash": "4a2d305dabade9d03cbe4910db8ae74d95ae8482ffe2ed717542160ea8a0adb5"
+    },
+    "physical-ai-neural-reconstruction": {
+      "source": "nvidia/skills",
+      "sourceType": "github",
+      "skillPath": "skills/physical-ai-neural-reconstruction/SKILL.md",
+      "computedHash": "68936a984286166fa33433f00193d4881d515bba6f5b7b529821aa26b882a376"
+    }
+  }
+}

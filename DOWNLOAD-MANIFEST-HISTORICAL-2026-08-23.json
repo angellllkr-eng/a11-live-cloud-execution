@@ -1,0 +1,30 @@
+﻿{
+    "downloadedAt":  "2026-08-23T11:25:01.1025817Z",
+    "root":  "C:\\Users\\ANGEL\\Downloads\\google-cloud-ceo-stack-2026-08-23",
+    "documents":  {
+                      "cluster-toolkit-overview.html":  "https://docs.cloud.google.com/cluster-toolkit/docs/overview",
+                      "alphaevolve-next-steps.html":  "https://docs.cloud.google.com/gemini/enterprise/docs/alphaevolve/developer-guide/use-alphaevolve",
+                      "ai-developer-tools-overview.html":  "https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-overview",
+                      "google-cloud-free-program.html":  "https://docs.cloud.google.com/free/docs/free-",
+                      "alphaevolve-developer-overview.html":  "https://docs.cloud.google.com/gemini/enterprise/docs/alphaevolve/developer-guide/overview",
+                      "ai-developer-tools-settings.html":  "https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-settings"
+                  },
+    "repositories":  [
+                         {
+                             "Name":  "cluster-toolkit",
+                             "Url":  "https://github.com/GoogleCloudPlatform/cluster-toolkit.git"
+                         },
+                         {
+                             "Name":  "alphaevolve-on-googlecloud",
+                             "Url":  "https://github.com/Google-Cloud-AI/alphaevolve-on-googlecloud.git"
+                         },
+                         {
+                             "Name":  "alphaevolve_results",
+                             "Url":  "https://github.com/google-deepmind/alphaevolve_results.git"
+                         },
+                         {
+                             "Name":  "alphaevolve_repository_of_problems",
+                             "Url":  "https://github.com/google-deepmind/alphaevolve_repository_of_problems.git"
+                         }
+                     ]
+}

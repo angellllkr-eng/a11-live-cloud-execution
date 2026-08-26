@@ -1,0 +1,147 @@
+{
+  "snapshot": {
+    "timestamp": "2026-08-23T11:35:00Z",
+    "status": "PROVEN-LOCAL",
+    "path": "C:\\Users\\ANGEL\\Downloads\\google-cloud-ceo-stack-2026-08-23"
+  },
+  "toolchain": {
+    "git": {
+      "installed": true,
+      "version": "2.55.0.windows.3"
+    },
+    "gcloud": {
+      "installed": true,
+      "version": "581.0.0"
+    },
+    "docker": {
+      "installed": true,
+      "version": "29.7.2"
+    },
+    "node": {
+      "installed": true,
+      "version": "22.20.0"
+    },
+    "npm": {
+      "installed": true,
+      "version": "10.9.3"
+    },
+    "python": {
+      "installed": false
+    },
+    "uv": {
+      "installed": false
+    },
+    "terraform": {
+      "installed": false
+    }
+  },
+  "repositories": {
+    "alphaevolve-on-googlecloud": {
+      "remote": "https://github.com/Google-Cloud-AI/alphaevolve-on-googlecloud.git",
+      "branch": "main",
+      "commit": "b51ab7a",
+      "files": 2141,
+      "examples": [
+        "circle_packing",
+        "tsp",
+        "signal_processing",
+        "adaptive_sort",
+        "adaptive_sort_cpp",
+        "llm_fine_tuning"
+      ],
+      "skills": [
+        "alpha_evolve_consultant",
+        "alpha_evolve_experiment_design",
+        "alpha_evolve_monitor",
+        "alpha_evolve_orchestrator",
+        "alpha_evolve_post_experiment",
+        "alpha_evolve_runner"
+      ]
+    },
+    "cluster-toolkit": {
+      "remote": "https://github.com/GoogleCloudPlatform/cluster-toolkit.git",
+      "branch": "main",
+      "commit": "97ea6d4",
+      "files": 2141,
+      "description": "Deploy AI/ML and HPC environments on Google Cloud"
+    },
+    "alphaevolve_results": {
+      "remote": "https://github.com/google-deepmind/alphaevolve_results.git",
+      "branch": "main",
+      "commit": "4226acb",
+      "description": "Mathematical discoveries and Colab notebooks"
+    },
+    "alphaevolve_repository_of_problems": {
+      "remote": "https://github.com/google-deepmind/alphaevolve_repository_of_problems.git",
+      "branch": "main",
+      "commit": "8f44745",
+      "problemCount": 67,
+      "description": "Optimisation problems with prompts and verification code"
+    }
+  },
+  "documentation": {
+    "downloaded": 6,
+    "files": {
+      "cluster-toolkit-overview.html": "https://docs.cloud.google.com/cluster-toolkit/docs/overview",
+      "alphaevolve-developer-overview.html": "https://docs.cloud.google.com/gemini/enterprise/docs/alphaevolve/developer-guide/overview",
+      "google-cloud-free-program.html": "https://docs.cloud.google.com/free/docs/free-",
+      "ai-developer-tools-overview.html": "https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-overview",
+      "ai-developer-tools-settings.html": "https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-settings",
+      "alphaevolve-next-steps.html": "https://docs.cloud.google.com/gemini/enterprise/docs/alphaevolve/developer-guide/use-alphaevolve"
+    }
+  },
+  "agentSkills": {
+    "localSkillCount": 20,
+    "newA11Skills": 5,
+    "newSkills": [
+      "a11-ceo-reality-engine",
+      "a11-evidence-chain",
+      "a11-executive-blast-radius",
+      "a11-ceo-deployment-replay",
+      "a11-compounding-asset-forge"
+    ],
+    "existingSkillsUsed": [
+      "cold-truth-qa-adversary",
+      "supply-chain-interrogation",
+      "decision-fossil-ledger",
+      "feature-funeral-metric"
+    ]
+  },
+  "safetyBoundary": {
+    "apisEnabled": false,
+    "billingMutation": false,
+    "dnsChanges": false,
+    "publicDeployment": false,
+    "secretsExposed": false,
+    "readOnlyOnly": true
+  },
+  "proveCapabilities": {
+    "alphaEvolveLocal": {
+      "status": "READY-BUT-UNEXECUTED",
+      "blocker": "Python 3.11+ and uv required",
+      "proof": "Circle Packing example with local evaluator",
+      "timeEstimate": "15 minutes"
+    },
+    "cloudRunStaging": {
+      "status": "READY-BUT-UNEXECUTED",
+      "blocker": "gcloud credentials, project, API enable approval",
+      "proof": "Private Cloud Run service + Cloud Build pipeline",
+      "timeEstimate": "30 minutes"
+    },
+    "geminienterprise": {
+      "status": "BLOCKED-CREDENTIALS",
+      "blocker": "Gemini Enterprise licence and API provisioning",
+      "proof": "Antigravity IDE extension authentication",
+      "timeEstimate": "60 minutes + support time"
+    }
+  },
+  "ceoApprovalGates": [
+    "Enable billing or cloud APIs",
+    "Create external service accounts or impersonation",
+    "Deploy to production infrastructure",
+    "Modify DNS records or SSL certificates",
+    "Install native code or install-time scripts",
+    "Create commitments or external purchases",
+    "Expose or export credentials"
+  ]
+}

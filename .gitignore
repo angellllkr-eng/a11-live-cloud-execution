@@ -1,0 +1,11 @@
+# A11 dependencies (embedded repos are separate — see submodules)
+alphaevolve-on-googlecloud/
+alphaevolve_repository_of_problems/
+alphaevolve_results/
+cluster-toolkit/
+
+# local runtime artifacts (not part of cloud source)
+A11-OWNER-RUNTIME/.venv/
+.agents/
+.claude/
+*.log

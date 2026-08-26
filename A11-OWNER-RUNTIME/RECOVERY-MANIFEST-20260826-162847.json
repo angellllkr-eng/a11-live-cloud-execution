@@ -1,0 +1,102 @@
+﻿{
+    "generated_at":  "2026-08-26T13:28:47.6597163Z",
+    "root":  "C:\\Users\\ANGEL\\OneDrive\\Desktop\\google-cloud-ceo-stack-2026-08-23",
+    "runtime_files":  [
+                          {
+                              "name":  "BENCHMARK.json",
+                              "length":  511,
+                              "last_write_time_utc":  "2026-08-26T08:57:09.1264102Z"
+                          },
+                          {
+                              "name":  "BENCHMARK.ps1",
+                              "length":  417,
+                              "last_write_time_utc":  "2026-08-26T08:56:32.1797488Z"
+                          },
+                          {
+                              "name":  "benchmark_local.py",
+                              "length":  1779,
+                              "last_write_time_utc":  "2026-08-26T08:56:18.1333071Z"
+                          },
+                          {
+                              "name":  "circle-packing.env",
+                              "length":  600,
+                              "last_write_time_utc":  "2026-08-26T08:13:12.4303716Z"
+                          },
+                          {
+                              "name":  "CLOUD-PREFLIGHT.ps1",
+                              "length":  1906,
+                              "last_write_time_utc":  "2026-08-26T09:33:38.4726259Z"
+                          },
+                          {
+                              "name":  "LOCAL-SERVE.md",
+                              "length":  1120,
+                              "last_write_time_utc":  "2026-08-26T08:57:54.6130793Z"
+                          },
+                          {
+                              "name":  "PROOF.json",
+                              "length":  1063,
+                              "last_write_time_utc":  "2026-08-26T08:58:40.9404254Z"
+                          },
+                          {
+                              "name":  "PROVE.ps1",
+                              "length":  566,
+                              "last_write_time_utc":  "2026-08-26T08:13:31.5208901Z"
+                          },
+                          {
+                              "name":  "prove_seed.py",
+                              "length":  2122,
+                              "last_write_time_utc":  "2026-08-26T08:58:28.7437006Z"
+                          },
+                          {
+                              "name":  "RECOVERY-MANIFEST-20260826-162709.json",
+                              "length":  5093,
+                              "last_write_time_utc":  "2026-08-26T13:27:10.1173413Z"
+                          },
+                          {
+                              "name":  "SERVE.ps1",
+                              "length":  400,
+                              "last_write_time_utc":  "2026-08-26T08:56:25.1405401Z"
+                          },
+                          {
+                              "name":  "serve.stderr.log",
+                              "length":  0,
+                              "last_write_time_utc":  "2026-08-26T08:57:32.3493970Z"
+                          },
+                          {
+                              "name":  "serve.stdout.log",
+                              "length":  31,
+                              "last_write_time_utc":  "2026-08-26T08:57:34.9530387Z"
+                          },
+                          {
+                              "name":  "serve_evaluator.py",
+                              "length":  4608,
+                              "last_write_time_utc":  "2026-08-26T08:56:10.1335963Z"
+                          },
+                          {
+                              "name":  "STATUS.md",
+                              "length":  1643,
+                              "last_write_time_utc":  "2026-08-26T08:58:03.8333296Z"
+                          }
+                      ],
+    "repo_status":  [
+                        "## main...origin/main",
+                        " M examples/circle_packing/src/evaluate.py",
+                        " M examples/circle_packing/src/run_evolution.py",
+                        " M skills/alpha_evolve_experiment_design/examples/circle_packing/evaluator.py",
+                        " M skills/alpha_evolve_experiment_design/examples/circle_packing/test_evaluator.py"
+                    ],
+    "repo_remote":  [
+                        "origin\thttps://github.com/Google-Cloud-AI/alphaevolve-on-googlecloud.git (fetch)",
+                        "origin\thttps://github.com/Google-Cloud-AI/alphaevolve-on-googlecloud.git (push)"
+                    ],
+    "repo_head":  "b51ab7a6446d0168bf6db52c6dccbec414a21b3f",
+    "repo_branch":  "main",
+    "repo_diff_stat":  [
+                           " examples/circle_packing/src/evaluate.py                | 18 ++++++++++--------",
+                           " examples/circle_packing/src/run_evolution.py           |  2 +-",
+                           " .../examples/circle_packing/evaluator.py               |  2 +-",
+                           " .../examples/circle_packing/test_evaluator.py          |  7 ++++---",
+                           " 4 files changed, 16 insertions(+), 13 deletions(-)"
+                       ],
+    "repo_diff_check":  "PASSED_AFTER_TEST"
+}

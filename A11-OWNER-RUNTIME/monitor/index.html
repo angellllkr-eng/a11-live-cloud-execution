@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A11 Live Performance Monitor</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121821;
+      --line: #1e2a38;
+      --text: #e8eef6;
+      --muted: #8fa3b8;
+      --ok: #2dd4a8;
+      --warn: #f5c542;
+      --bad: #ff6b6b;
+      --accent: #6ea8fe;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #152033 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header, main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    header {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    h1 { font-size: 1.25rem; margin: 0; letter-spacing: 0.02em; }
+    .sub { color: var(--muted); font-size: 0.9rem; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line); background: var(--panel);
+      border-radius: 999px; padding: 8px 12px; font-size: 0.85rem;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+    .dot.ok { background: var(--ok); }
+    .dot.bad { background: var(--bad); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .card {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .label { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .value { font-size: 1.55rem; margin-top: 8px; font-weight: 650; }
+    .meta { margin-top: 6px; color: var(--muted); font-size: 0.85rem; }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
+    .row > .card { flex: 1 1 320px; }
+    select, button {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #0e141c;
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 0.95rem;
+    }
+    button {
+      background: linear-gradient(180deg, #3d7cff, #2b5fd4);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    button:disabled { opacity: 0.55; cursor: not-allowed; }
+    canvas {
+      width: 100%;
+      height: 220px;
+      background: #0a1017;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 600; }
+    .status-ok { color: var(--ok); }
+    .status-warn { color: var(--warn); }
+    .status-bad { color: var(--bad); }
+    .pill {
+      display: inline-block; padding: 4px 8px; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--muted); font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>A11 Live Performance Monitor</h1>
+      <div class="sub">София Tech Register EOOD · MindReply · loopback only</div>
+    </div>
+    <div class="badge"><span id="liveDot" class="dot"></span><span id="liveText">CONNECTING</span></div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card">
+        <div class="label">Seed score</div>
+        <div class="value" id="score">—</div>
+        <div class="meta" id="metric">metric pending</div>
+      </div>
+      <div class="card">
+        <div class="label">Latency</div>
+        <div class="value" id="latency">—</div>
+        <div class="meta">mean ms / eval</div>
+      </div>
+      <div class="card">
+        <div class="label">Throughput</div>
+        <div class="value" id="throughput">—</div>
+        <div class="meta">evaluations / second</div>
+      </div>
+      <div class="card">
+        <div class="label">Cloud path</div>
+        <div class="value" id="cloud">GATED</div>
+        <div class="meta" id="cloudMeta">billing / ADC / GE_APP_ID</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="label">Model select</div>
+        <div class="meta" style="margin-bottom:10px">Local UI only. Remote generation stays GATED until owner unlock.</div>
+        <select id="model">
+          <option value="gemini-3.7">Gemini 3.7</option>
+          <option value="grok-6">Grok 6</option>
+          <option value="sol-5.6">Sol 5.6</option>
+          <option value="nvidia-pro">NVIDIA Pro tier</option>
+        </select>
+        <button id="runBtn" type="button">Run local sample</button>
+        <div class="meta" id="modelNote" style="margin-top:10px">Selected model is recorded for analysis. Cloud inference is not enabled.</div>
+      </div>
+      <div class="card">
+        <div class="label">Live latency chart</div>
+        <canvas id="chart" width="640" height="220"></canvas>
+        <div class="meta" id="sampleMeta">No samples yet</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="label">Status board</div>
+        <table>
+          <thead>
+            <tr><th>Check</th><th>State</th></tr>
+          </thead>
+          <tbody id="statusRows"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="label">Recent samples</div>
+        <table>
+          <thead>
+            <tr><th>Time</th><th>Model</th><th>ms</th><th>Score</th></tr>
+          </thead>
+          <tbody id="sampleRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const history = [];
+    const maxPoints = 30;
+
+    function cls(status) {
+      const s = String(status || '').toUpperCase();
+      if (s.includes('PROVEN') || s.includes('ACTIVE') || s.includes('OK')) return 'status-ok';
+      if (s.includes('GATED') || s.includes('UNVERIFIED') || s.includes('WARN')) return 'status-warn';
+      return 'status-bad';
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('chart');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = '#1e2a38';
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 4; i++) {
+        const y = (h / 4) * i;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      if (history.length < 2) return;
+      const values = history.map(x => x.ms);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const span = Math.max(max - min, 1);
+      ctx.strokeStyle = '#6ea8fe';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      history.forEach((p, i) => {
+        const x = (i / (maxPoints - 1)) * (w - 20) + 10;
+        const y = h - 15 - ((p.ms - min) / span) * (h - 30);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    function renderSamples() {
+      const body = document.getElementById('sampleRows');
+      body.innerHTML = history.slice().reverse().slice(0, 8).map(s => `
+        <tr>
+          <td>${s.time}</td>
+          <td><span class="pill">${s.model}</span></td>
+          <td>${s.ms.toFixed(2)}</td>
+          <td>${s.score.toFixed(6)}</td>
+        </tr>
+      `).join('');
+      document.getElementById('sampleMeta').textContent = history.length
+        ? `${history.length} local samples · last ${history[history.length - 1].ms.toFixed(2)} ms`
+        : 'No samples yet';
+      drawChart();
+    }
+
+    function renderStatus(data) {
+      const rows = [
+        ['Local evaluator', data.local?.status || 'UNVERIFIED'],
+        ['Seed score', data.local?.score ?? '—'],
+        ['Benchmark', data.local?.benchmark_status || 'UNVERIFIED'],
+        ['Cloud account', data.cloud?.GCloudAccount || 'UNVERIFIED'],
+        ['Project', data.cloud?.ProjectState || 'UNVERIFIED'],
+        ['Billing', data.cloud?.Billing || 'BLOCKED'],
+        ['ADC', data.cloud?.ADC || 'BLOCKED'],
+        ['Discovery Engine', data.cloud?.DiscoveryEngineAPI || 'BLOCKED'],
+        ['GE_APP_ID', data.cloud?.GE_APP_ID || 'UNVERIFIED'],
+        ['Cloud mutation', data.cloud?.CloudMutation || 'GATED'],
+      ];
+      document.getElementById('statusRows').innerHTML = rows.map(([k, v]) => `
+        <tr><td>${k}</td><td class="${cls(v)}">${v}</td></tr>
+      `).join('');
+    }
+
+    async function refresh() {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        document.getElementById('liveDot').className = 'dot ok';
+        document.getElementById('liveText').textContent = 'LIVE · LOOPBACK';
+        document.getElementById('score').textContent = Number(data.local?.score || 0).toFixed(6);
+        document.getElementById('metric').textContent = data.local?.metric || 'sum_of_radii';
+        document.getElementById('latency').textContent = Number(data.local?.mean_ms || 0).toFixed(2) + ' ms';
+        document.getElementById('throughput').textContent = Number(data.local?.eps || 0).toFixed(1);
+        document.getElementById('cloud').textContent = 'GATED';
+        document.getElementById('cloudMeta').textContent = `${data.cloud?.Billing || 'billing blocked'} · ${data.cloud?.ADC || 'ADC blocked'}`;
+        renderStatus(data);
+      } catch (err) {
+        document.getElementById('liveDot').className = 'dot bad';
+        document.getElementById('liveText').textContent = 'OFFLINE';
+      }
+    }
+
+    async function runSample() {
+      const model = document.getElementById('model').value;
+      const btn = document.getElementById('runBtn');
+      btn.disabled = true;
+      document.getElementById('modelNote').textContent = `Running local sample with ${model} selected…`;
+      try {
+        const res = await fetch('/api/sample', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model })
+        });
+        const data = await res.json();
+        if (data.status !== 'PROVEN') throw new Error(data.error || 'sample failed');
+        history.push({
+          time: new Date().toLocaleTimeString(),
+          model: data.model,
+          ms: data.elapsed_ms,
+          score: data.score
+        });
+        if (history.length > maxPoints) history.shift();
+        renderSamples();
+        document.getElementById('modelNote').textContent = `PROVEN local sample · ${data.model} · cloud inference GATED`;
+        await refresh();
+      } catch (err) {
+        document.getElementById('modelNote').textContent = `FAILED: ${err.message}`;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    document.getElementById('runBtn').addEventListener('click', runSample);
+    refresh();
+    setInterval(refresh, 3000);
+  </script>
+</body>
+</html>

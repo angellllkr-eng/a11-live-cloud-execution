@@ -1,0 +1,96 @@
+{
+  "snapshot": {
+    "timestamp": "2026-08-26T14:59:30Z",
+    "status": "PROVEN-LOCAL",
+    "path": "C:\\Users\\ANGEL\\OneDrive\\Desktop\\google-cloud-ceo-stack-2026-08-23",
+    "canonicalWorkspace": "C:\\Users\\ANGEL\\MRPRODUCTION",
+    "role": "INSPECTION-SNAPSHOT-NOT-CANONICAL-SOURCE",
+    "historicalEvidence": "EVIDENCE-HISTORICAL-2026-08-23.json"
+  },
+  "owner": {
+    "legal": "София Tech Register EOOD",
+    "brand": "A11 / MindReply",
+    "portfolio": "A11-K.space",
+    "projectId": "mind-reply-496111",
+    "projectNumber": "768983523738",
+    "account": "mind-reply@mind-reply-496111.iam.gserviceaccount.com"
+  },
+  "toolchain": {
+    "git": { "installed": true, "status": "PROVEN" },
+    "gcloud": { "installed": true, "status": "PROVEN" },
+    "docker": { "installed": true, "status": "GATED" },
+    "node": { "installed": true, "status": "PROVEN" },
+    "npm": { "installed": true, "status": "PROVEN" },
+    "python": {
+      "installed": true,
+      "status": "PROVEN",
+      "runtime": "alphaevolve-on-googlecloud\\.venv\\Scripts\\python.exe"
+    },
+    "uv": { "installed": "UNVERIFIED", "status": "NOT-REQUIRED-FOR-LOCAL-PROOF" },
+    "terraform": { "installed": false, "status": "GATED" }
+  },
+  "localAlphaEvolve": {
+    "status": "PROVEN",
+    "tests": {
+      "fullSuite": "74 passed",
+      "packageTests": "53 passed",
+      "circlePackingEvaluatorTests": "12 passed"
+    },
+    "seed": {
+      "metric": "sum_of_radii",
+      "score": 0.9414554065860813,
+      "deterministic": true
+    },
+    "benchmark": {
+      "runs": 1000,
+      "meanMilliseconds": 6.196758599999157,
+      "evaluationsPerSecond": 161.37469030988814,
+      "status": "PROVEN"
+    },
+    "loopbackService": {
+      "url": "http://127.0.0.1:8765",
+      "healthz": "PROVEN",
+      "binding": "LOOPBACK_ONLY",
+      "warning": "Candidate source executes via exec(); keep loopback-only."
+    }
+  },
+  "cloud": {
+    "gcloudAccount": "PROVEN",
+    "projectState": "PROVEN (ACTIVE)",
+    "billing": "BLOCKED (False)",
+    "adc": "BLOCKED",
+    "discoveryEngineApi": "BLOCKED",
+    "geAppId": "UNVERIFIED",
+    "cloudMutation": "GATED",
+    "preflightReport": "A11-OWNER-RUNTIME\\CLOUD-PREFLIGHT.json"
+  },
+  "safetyBoundary": {
+    "apisEnabled": false,
+    "billingMutation": false,
+    "dnsChanges": false,
+    "publicDeployment": false,
+    "secretsExposed": false,
+    "readOnlyCloudOnly": true
+  },
+  "proveCapabilities": {
+    "alphaEvolveLocal": {
+      "status": "PROVEN",
+      "proof": "Seed evaluator + 74 tests + 1000-run benchmark + loopback service"
+    },
+    "cloudRunStaging": {
+      "status": "GATED",
+      "blocker": "Billing, ADC, owner approval for API enablement and deployment"
+    },
+    "geminiEnterpriseAlphaEvolve": {
+      "status": "BLOCKED",
+      "blocker": "Billing disabled, ADC missing, GE_APP_ID unverified, discoveryengine API not enabled"
+    }
+  },
+  "ceoApprovalGates": [
+    "Attach billing to mind-reply-496111",
+    "Run gcloud auth application-default login interactively",
+    "Provision/obtain real Gemini Enterprise AlphaEvolve App/Engine ID",
+    "Enable discoveryengine.googleapis.com only after prerequisites pass",
+    "Any cloud deployment, IAM, DNS, or public endpoint"
+  ]
+}
