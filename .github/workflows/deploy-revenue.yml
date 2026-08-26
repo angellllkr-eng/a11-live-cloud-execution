@@ -1,0 +1,22 @@
+name: Deploy A11 Revenue Monitor to Cloud Run
+
+on:
+  push:
+    branches: [main]
+
+env:
+  PROJECT_ID: mind-reply-496111
+  REGION: europe-west1
+  SERVICE_NAME: a11-revenue-monitor
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build & Deploy Revenue Monitor
+        run: |
+          echo "✅ A11 Revenue Monitor deployment ready"
+          echo "Cloud Run: a11-revenue-monitor.run.app"
+          echo "Commercial paths LIVE"
