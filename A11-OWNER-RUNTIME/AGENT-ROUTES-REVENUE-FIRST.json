@@ -1,0 +1,196 @@
+{
+  "owner": "София Tech Register EOOD",
+  "brand": "A11 / MindReply",
+  "portfolio": "A11-K.space",
+  "execution_mode": "CLOUD-NATIVE-ONLY",
+  "TOP_PRIORITY": "REVENUE AND PROFIT",
+  "commercial_paths": {
+    "A11-Signal": {
+      "url": "https://buy.stripe.com/eVq14h6wEb042XK5Oy63K06",
+      "tier": "tier-1-signal",
+      "status": "LIVE",
+      "conversion_target": "real-time market signal subscribers"
+    },
+    "A11-Operator": {
+      "url": "https://buy.stripe.com/00w8wJg7e6JO55Sfp863K05",
+      "tier": "tier-2-operator",
+      "status": "LIVE",
+      "conversion_target": "enterprise automation operators"
+    },
+    "A11-Council": {
+      "url": "https://buy.stripe.com/6oUeV7bQYgkocyk3Gq63K04",
+      "tier": "tier-3-council",
+      "status": "LIVE",
+      "conversion_target": "advisory board + strategic planning"
+    },
+    "Repository-Reality-Engine": {
+      "url": "https://book.stripe.com/8x2dR36wEb04aqc90K63K03",
+      "tier": "enterprise-data-product",
+      "status": "LIVE",
+      "conversion_target": "GitHub repo analytics + profit audit"
+    },
+    "PATCH-Revenue-Engine": {
+      "url": "https://book.stripe.com/00wdR3aMUfgkbugel463K02",
+      "tier": "enterprise-optimization",
+      "status": "LIVE",
+      "conversion_target": "revenue ops + margin optimization"
+    },
+    "GitHub-Python-Profit-Audit": {
+      "url": "https://book.stripe.com/8x2aER4owd8c1TG4Ku63K00",
+      "tier": "compliance-audit",
+      "status": "LIVE",
+      "conversion_target": "codebase health + licensing compliance + profit leak detection"
+    }
+  },
+  "revenue_routes": {
+    "A": {
+      "name": "GitHub Actions: push PROOF + trigger Stripe webhook",
+      "platform": "GitHub + Stripe API",
+      "action": "On verified commit, emit conversion event to Stripe dashboard",
+      "revenue_model": "transaction tracking + conversion attribution",
+      "on_fail": "B"
+    },
+    "B": {
+      "name": "Vertex AI: model inference → paid API calls",
+      "platform": "Google Cloud Enterprise",
+      "service": "Vertex AI Pay-as-you-go model hosting",
+      "models": ["gemini-3.7", "grok-6", "sol-5.6", "nvidia-pro"],
+      "billing": "per-token, per-inference call",
+      "on_fail": "C"
+    },
+    "C": {
+      "name": "Supabase: data product monetization",
+      "platform": "Supabase",
+      "schema": "artifacts + usage tracking + metering",
+      "billing_model": "rows-queried, storage-used, realtime-connections",
+      "on_fail": "D"
+    },
+    "D": {
+      "name": "Cloud Run: SaaS endpoint + usage-based billing",
+      "platform": "Google Cloud Enterprise",
+      "service": "Cloud Run container pricing model",
+      "endpoint": "a11-monitor.run.app",
+      "billing": "CPU/memory per 100ms + invocation count",
+      "on_fail": "E"
+    },
+    "E": {
+      "name": "GitHub Marketplace: publish A11 skills as paid extensions",
+      "platform": "GitHub Marketplace",
+      "products": ["a11-alphaevolve-enterprise", "a11-cloud-native-monitor", "a11-model-selector"],
+      "billing": "revenue share 70% seller / 30% GitHub",
+      "on_fail": "F"
+    },
+    "F": {
+      "name": "Stripe Connect: affiliate + reseller commission tracking",
+      "platform": "Stripe",
+      "model": "Pay-out connected accounts on sale completion",
+      "revenue_share": "variable by partner tier",
+      "on_fail": "G"
+    },
+    "G": {
+      "name": "AWS Marketplace: list A11 as AMI + CloudFormation template",
+      "platform": "AWS",
+      "products": ["a11-alphaevolve-ami", "a11-cloud-native-stack"],
+      "billing": "hourly AMI price + usage-based metrics",
+      "on_fail": "H"
+    },
+    "H": {
+      "name": "OneDrive: premium data share + sync billing",
+      "platform": "Microsoft OneDrive",
+      "model": "team collaboration + storage tier upsells",
+      "on_fail": "I"
+    },
+    "I": {
+      "name": "Google Drive: Workspace add-on + API quota monetization",
+      "platform": "Google Workspace Marketplace",
+      "products": ["a11-workspace-addon-monitor", "a11-data-analytics-plugin"],
+      "on_fail": "J"
+    },
+    "J": {
+      "name": "BigQuery: public datasets + query monetization",
+      "platform": "Google Cloud Enterprise",
+      "model": "BigQuery public datasets with paid premium tiers",
+      "on_fail": "K"
+    },
+    "K": {
+      "name": "Live dashboard: model selector with usage metering",
+      "platform": "Google Cloud Run + Stripe",
+      "url": "https://a11-monitor.run.app",
+      "monetization": "per-sample-run + per-model-inference billing",
+      "on_fail": "L"
+    },
+    "L": {
+      "name": "GitHub Sponsorship + donation tier",
+      "platform": "GitHub Sponsors",
+      "tiers": ["signal-supporter", "operator-backer", "council-investor"],
+      "on_fail": "M"
+    },
+    "M": {
+      "name": "Supabase Pro tier: unlimited rows + premium support",
+      "platform": "Supabase",
+      "upsell": "artifacts database usage → Supabase Pro conversion",
+      "revenue_model": "Supabase revenue share on converted customers",
+      "on_fail": "N"
+    },
+    "N": {
+      "name": "AWS Activate: startup credit + reseller program",
+      "platform": "AWS",
+      "model": "become AWS reseller → margin on customer billing",
+      "on_fail": "O"
+    },
+    "O": {
+      "name": "Certification path: A11 Cloud Engineer certification",
+      "platform": "self-hosted or Coursera",
+      "model": "paid certification exam + training materials",
+      "on_fail": "P"
+    },
+    "P": {
+      "name": "Consulting hours: AI ops + cloud architecture",
+      "platform": "Calendly + Stripe",
+      "model": "billable consulting engagements tracked in Supabase",
+      "rate": "variable by customer tier",
+      "on_fail": "Q"
+    },
+    "Q": {
+      "name": "EMERGENCY REVENUE LANE",
+      "actions": [
+        "Fallback to GitHub Sponsors if Stripe down",
+        "Enable all AWS Activate credits if GCP billing blocked",
+        "Pivot to Supabase free tier → upsell chain",
+        "Manual invoice generation via OneDrive shared templates",
+        "Alert via Slack + email on any revenue drop"
+      ],
+      "on_fail": "Z"
+    },
+    "Z": {
+      "name": "Report full financials + seal evidence",
+      "action": "Export revenue metrics from Stripe/Supabase to BigQuery, lock status"
+    }
+  },
+  "agent_contract_revenue": {
+    "every_agent_must": [
+      "Optimize every cloud route for revenue generation",
+      "Track conversion metrics in Supabase artifacts table",
+      "Emit Stripe events on every material action (proof, sample, deploy)",
+      "Never block a paying customer path",
+      "Route Q is emergency revenue lane if primary fails",
+      "Report revenue in PROVEN / READY / BLOCKED status only",
+      "Never invent profit; track real billing events"
+    ],
+    "forbidden": [
+      "Deploy without Stripe webhook integration",
+      "Enable free tier without upsell path",
+      "Offer features without metering/billing",
+      "Block revenue routes for any reason except owner gate"
+    ]
+  },
+  "metrics_to_track": {
+    "conversion_rate": "free → paid tier",
+    "arpu": "average revenue per user",
+    "mrr": "monthly recurring revenue",
+    "churn": "cancellation rate",
+    "ltv": "lifetime value by customer segment",
+    "cac": "customer acquisition cost",
+    "runway": "months of operations at current burn"
+  }
+}
