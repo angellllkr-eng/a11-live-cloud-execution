@@ -33,6 +33,7 @@ venv/
 ENV/
 env/
 .venv
+node_modules/
 
 # IDEs
 .vscode/
@@ -48,15 +49,26 @@ env/
 htmlcov/
 .tox/
 
-# Credentials
-*.json
-*.key
+# Credentials (block secrets, not config)
 *.pem
-!requirements.txt
-
-# Google Cloud
+*.key
 gcp-key.json
+credentials.json
+service-account.json
 
-# Logs
+# Generated/temporary
 *.log
 logs/
+dist/
+build/
+*.tmp
+
+# Frontend
+node_modules/
+.next/
+out/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
