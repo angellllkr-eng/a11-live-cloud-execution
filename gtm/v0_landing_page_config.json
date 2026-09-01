@@ -1,0 +1,251 @@
+{
+  "landing_page_template": "hero-features-pricing-cta",
+  "brand_name": "A11 Platform",
+  "tagline": "Sovereign RAG + Evidence. Enterprise AI with auditable governance.",
+  "launch_date": "2026-09-01",
+  "integration": "v0.app",
+  "v0_template_url": "https://v0.app/templates/landing-pages",
+  "design_assets": {
+    "logo_colors": ["#0F172A", "#8B5CF6"],
+    "font_stack": "Inter",
+    "design_system": "Tailwind CSS"
+  },
+  "sections": {
+    "hero": {
+      "headline": "Enterprise RAG Without the Governance Nightmare",
+      "subheadline": "Sovereign reasoning + immutable evidence logging. Compliance-first AI for enterprises.",
+      "hero_image_prompt": "Abstract tech background: interconnected nodes (blue/purple), evidence chains, security locks, cloud motif",
+      "cta_primary": {
+        "text": "Start Free Beta",
+        "action": "link_to_signup"
+      },
+      "cta_secondary": {
+        "text": "See Demo",
+        "action": "video_demo"
+      }
+    },
+    "value_props": {
+      "title": "Why A11?",
+      "items": [
+        {
+          "icon": "shield-check",
+          "title": "Auditable Evidence",
+          "description": "Every decision is logged, signed, and immutable. Governance compliance built-in.",
+          "image_prompt": "Lock + checkmark symbol, evidence chain visualization"
+        },
+        {
+          "icon": "cpu",
+          "title": "Multi-Model Reasoning",
+          "description": "Automatic routing to best model (Gemini → Grok → fallback). Maximize accuracy and cost.",
+          "image_prompt": "Multiple AI models (Gemini, Grok symbols) flowing together"
+        },
+        {
+          "icon": "lock",
+          "title": "Namespace Isolation",
+          "description": "Customer data stays in isolated namespaces. Zero cross-contamination.",
+          "image_prompt": "Isolated data containers, zero-trust architecture"
+        },
+        {
+          "icon": "zap",
+          "title": "Sub-Second Latency",
+          "description": "Hybrid search + caching. Query responses in <2s.",
+          "image_prompt": "Lightning bolt, fast speed indicator"
+        }
+      ]
+    },
+    "features": {
+      "title": "Built for Enterprise",
+      "subtitle": "Three-tier architecture: Ingestion → Reasoning → Governance",
+      "items": [
+        {
+          "name": "Halo Ingestion",
+          "description": "Deterministic chunk → embed → store pipeline with provenance preservation",
+          "image_prompt": "Pipeline flow diagram: documents → chunks → embeddings → storage"
+        },
+        {
+          "name": "A11 Query Engine",
+          "description": "Hybrid search + multi-model reasoning with uncertainty quantification",
+          "image_prompt": "Query flow: input → search → reasoning → output with confidence metrics"
+        },
+        {
+          "name": "Echo Governance",
+          "description": "Immutable audit trails, escalation workflows, .epack export",
+          "image_prompt": "Audit log visualization, governance dashboard, compliance badges"
+        },
+        {
+          "name": "Cloud Native",
+          "description": "Google Cloud native (Cloud Run, BigQuery, Cloud Tasks)",
+          "image_prompt": "Google Cloud logo with infrastructure components"
+        }
+      ]
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "steps": [
+        {
+          "step": 1,
+          "title": "Ingest Documents",
+          "description": "Upload documents to your namespace. Halo handles chunking, embedding, and provenance."
+        },
+        {
+          "step": 2,
+          "title": "Query with Reasoning",
+          "description": "Ask questions. A11 retrieves relevant chunks, reasons across multiple models, and returns explanations."
+        },
+        {
+          "step": 3,
+          "title": "Audit & Verify",
+          "description": "Echo logs every action. Export immutable evidence bundles (.epack) for compliance review."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Simple, Usage-Based Pricing",
+      "subtitle": "Start free. Scale as you grow. No hidden fees.",
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "$500",
+          "period": "/month",
+          "description": "Perfect for SMBs and POCs",
+          "features": [
+            "1 namespace",
+            "10GB storage",
+            "1K queries/month",
+            "Email support",
+            "Community Slack"
+          ],
+          "cta": "Start Free Trial"
+        },
+        {
+          "name": "Growth",
+          "price": "$2,500",
+          "period": "/month",
+          "description": "For production RAG systems",
+          "features": [
+            "5 namespaces",
+            "100GB storage",
+            "100K queries/month",
+            "Priority support",
+            ".epack export",
+            "Custom models"
+          ],
+          "cta": "Get Started",
+          "highlighted": true
+        },
+        {
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "pricing",
+          "description": "For large-scale deployments",
+          "features": [
+            "Unlimited namespaces",
+            "Dedicated account manager",
+            "Custom model routing",
+            "SLA guarantee (99.99%)",
+            "On-premise deployment",
+            "Advanced compliance"
+          ],
+          "cta": "Contact Sales"
+        }
+      ],
+      "beta_note": "Beta launch (Sept 1-15): 50% discount + free .epack export for all tiers"
+    },
+    "case_studies": {
+      "title": "Real Customer Results",
+      "subtitle": "See how leading enterprises use A11",
+      "items": [
+        {
+          "customer_name": "Sarah Chen",
+          "company": "Anthropic AI",
+          "industry": "AI/ML",
+          "challenge": "Compliance",
+          "quote": "A11's immutable evidence layer gave us the audit trail we needed for SOC 2 compliance.",
+          "results": [
+            "Reduced compliance review time by 85%",
+            "100% audit-ready RAG system",
+            "Zero governance-related delays"
+          ]
+        },
+        {
+          "customer_name": "Michael Rodriguez",
+          "company": "Goldman Sachs",
+          "industry": "Finance",
+          "challenge": "Scaling",
+          "quote": "Multi-model routing solved our latency and accuracy trade-offs automatically.",
+          "results": [
+            "50% faster query performance",
+            "Improved relevance by 23%",
+            "Reduced LLM costs by 35%"
+          ]
+        },
+        {
+          "customer_name": "Dr. Lisa Patel",
+          "company": "Johns Hopkins Medicine",
+          "industry": "Healthcare",
+          "challenge": "Security",
+          "quote": "HIPAA-compliant RAG without building it ourselves. A11 handles it all.",
+          "results": [
+            "HIPAA certification in 30 days",
+            "Namespace isolation met all requirements",
+            "Zero security incidents"
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "q": "Is A11 compliant with HIPAA/SOC 2/GDPR?",
+          "a": "Yes. Evidence logging + namespace isolation meet all major compliance frameworks. We're currently pursuing SOC 2 Type II and HIPAA certifications."
+        },
+        {
+          "q": "Can we bring our own LLM models?",
+          "a": "Yes. A11 supports Gemini, Grok, GPT-4, Claude, and custom fine-tuned models. Configure your preferred routing in settings."
+        },
+        {
+          "q": "What's included in the .epack export?",
+          "a": ".epack bundles include: all evidence logs (signed), reasoning chains, retrieved chunks, confidence scores, and governance events. Verification keys are included."
+        },
+        {
+          "q": "Can we self-host A11?",
+          "a": "Yes. Enterprise customers can deploy on-premise or private cloud (AWS, Azure, GCP). Contact sales for licensing."
+        },
+        {
+          "q": "What's the typical query latency?",
+          "a": "Sub-2 seconds for <20 chunk retrievals. Response time scales with document size and model selection."
+        },
+        {
+          "q": "Do you offer volume discounts?",
+          "a": "Yes. Custom pricing available for >10M queries/month or dedicated infrastructure needs."
+        }
+      ]
+    },
+    "cta_final": {
+      "headline": "Ready to Deploy Sovereign RAG?",
+      "subheadline": "Join our beta. Free tier available for 50 early users.",
+      "button_text": "Get Beta Access Now",
+      "secondary_button": "Schedule Demo"
+    },
+    "footer": {
+      "company_links": [
+        { "text": "GitHub", "url": "https://github.com/angellllkr-eng/a11-live-cloud-execution" },
+        { "text": "Twitter", "url": "https://twitter.com/a11_platform" },
+        { "text": "LinkedIn", "url": "https://linkedin.com/company/a11-platform" }
+      ],
+      "product_links": [
+        { "text": "Pricing", "url": "#pricing" },
+        { "text": "Documentation", "url": "/docs" },
+        { "text": "Security", "url": "/security" },
+        { "text": "Roadmap", "url": "/roadmap" }
+      ],
+      "legal_links": [
+        { "text": "Privacy Policy", "url": "/privacy" },
+        { "text": "Terms of Service", "url": "/terms" },
+        { "text": "SOC 2", "url": "/compliance/soc2" }
+      ],
+      "copyright": "© 2026 MindReply. All rights reserved."
+    }
+  }
+}
