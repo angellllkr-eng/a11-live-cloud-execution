@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with pgvector
+  postgres:
+    image: pgvector/pgvector:pg15-latest
+    container_name: a11-postgres
+    environment:
+      POSTGRES_DB: a11
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (for caching + rate limiting)
+  redis:
+    image: redis:7-alpine
+    container_name: a11-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # A11 API Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: a11-api
+    environment:
+      ENV: development
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/a11
+      REDIS_URL: redis://redis:6379
+      GCP_PROJECT: a11-platform
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    name: a11-network

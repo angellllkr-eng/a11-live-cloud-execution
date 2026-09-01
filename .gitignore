@@ -1,14 +1,62 @@
-# A11 dependencies (embedded repos are separate — see submodules)
-alphaevolve-on-googlecloud/
-alphaevolve_repository_of_problems/
-alphaevolve_results/
-cluster-toolkit/
+# Environment
+.env
+.env.local
+.env.*.local
 
-# local runtime artifacts (not part of cloud source)
-A11-OWNER-RUNTIME/.venv/
-.agents/
-.claude/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PIPFILE.lock
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Credentials
+*.json
+*.key
+*.pem
+!requirements.txt
+
+# Google Cloud
+gcp-key.json
+
+# Logs
 *.log
-A11-OWNER-RUNTIME/serve.stderr.log
-A11-OWNER-RUNTIME/serve.stdout.log
-A11-OWNER-RUNTIME/*.log
+logs/
