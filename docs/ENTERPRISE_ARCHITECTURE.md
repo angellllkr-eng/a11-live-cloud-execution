@@ -1,101 +1,85 @@
 # A11-K Global Enterprise Architecture
 
-## Canonical hierarchy
+## Authority
 
-This document is the executable architecture derived from the Enterprise Tree. It separates governance, control, security/evidence, infrastructure, products, external systems, physical execution, and finance.
+The **canonical enterprise architecture and repository registry live in `angellllkr-eng/agent-control-plane`**. This document is the execution-service view of that architecture.
+
+Canonical control documents:
+- `agent-control-plane/docs/ENTERPRISE_TREE_CANONICAL.md`
+- `agent-control-plane/docs/REPOSITORY_REGISTRY.md`
+- `agent-control-plane/ESTATE_MAP.md`
+
+## Execution-service placement
 
 ```text
 A11-K Global Enterprise
 │
 ├── L0 — Governance & Authority
-│   ├── Principal / Owner
-│   ├── Approval policy
-│   ├── Operating policies
-│   └── Identity / credential vault (private)
+│   └── agent-control-plane
 │
 ├── L1 — A11 Control Plane
-│   ├── CEO command interface
-│   ├── Task orchestration
-│   ├── Multi-model command matrix
-│   ├── Agent lifecycle / swap policy
-│   ├── Decision / escalation engine
-│   └── State & capability registry
+│   ├── agent-control-plane
+│   └── a11-live-cloud-execution  ← execution implementation
 │
 ├── L2 — Security & Evidence
-│   ├── Zero-trust architecture
-│   ├── Non-root isolation
-│   ├── Read-only root protection
-│   ├── Hardware MFA
-│   ├── Deterministic hashing
-│   ├── Append-only audit log
-│   ├── Signed evidence packages (.epack)
-│   └── Compliance verification
+│   └── governed services / evidence controls
 │
 ├── L3 — Cloud & Delivery Infrastructure
-│   ├── GitHub — source / CI / change control
-│   ├── Vercel — web / edge delivery
-│   ├── Database / state services
-│   ├── n8n — workflow automation
-│   ├── Domain / DNS layer
-│   ├── Observability / health checks
-│   └── Backup / rollback
+│   └── GitHub / CI / cloud deployment / state / automation
 │
 ├── L4 — Digital Product Estate
-│   ├── MindReply — decision / commercial layer
-│   ├── A11-K — evidence-led public surface
-│   ├── AUREL — omni-channel product/API layer
-│   ├── Innovation hubs
-│   └── E-commerce / commerce assets
+│   └── MindReply / A11-K / AUREL / other approved products
 │
 ├── L5 — External Systems & Trust Adapters
-│   ├── Government / commercial registries
-│   ├── Qualified electronic signature services
-│   ├── Payment / settlement providers
-│   ├── Banking / financial providers
-│   ├── Communication channels
-│   └── Third-party APIs
 │
 ├── L6 — Physical Execution
-│   ├── Site validation
-│   ├── Connectivity / Wi-Fi validation
-│   ├── Logistics / fleet research
-│   └── Physical safety / execution metrics
 │
 └── L7 — Finance & Commercial Operations
-    ├── Revenue / subscriptions
-    ├── Payment settlement
-    ├── Treasury / cash management
-    ├── Asset valuation
-    └── Financial reporting / evidence
 ```
 
-## Design rules
+## Local service architecture
 
-1. **Models are execution resources, not owners.** Gemini, Claude, Grok and other providers belong under the L1 command matrix.
-2. **External legal/financial systems are adapters.** Their records are verified and evidenced; they are not treated as internal system-of-record components.
-3. **Personal identity data stays outside the architecture graph.** The graph references a principal/owner; sensitive identity material belongs in protected identity storage.
-4. **Every executable leaf must be traceable.** Minimum metadata: owner, system, repository, environment, domain, automation, health, evidence, and rollback path.
-5. **Irreversible operations require an approval checkpoint.** Destructive deployment, financial movement, credential changes, legal submissions, and production data mutations must fail closed without the required authority.
-6. **Evidence follows execution.** Significant changes produce an auditable event and, where required, a signed evidence package.
-7. **Production status is evidence-based.** A component is not considered LIVE merely because its code exists; deployment, health, routing, and smoke checks must pass.
+```text
+Operator / Product
+       │
+       ▼
+A11 — governed reasoning + RAG orchestration
+       │
+       ├── multi-model routing
+       ├── hybrid retrieval
+       └── uncertainty / escalation
+       │
+       ▼
+Halo — ingestion + pipeline automation
+       │
+       ├── deterministic chunking
+       ├── embedding
+       ├── namespace isolation
+       └── provenance / evidence
+       │
+       ▼
+Echo — governance + evidence
+       │
+       ├── hard constraints
+       ├── append-only audit
+       ├── signed evidence packages
+       └── escalation
+```
 
-## Repository mapping
+## Boundary rules
 
-| Layer | Primary implementation surface |
-|---|---|
-| L0 | Private control / governance repositories |
-| L1 | `a11-live-cloud-execution` |
-| L2 | `a11-live-cloud-execution/echo` + security controls |
-| L3 | `a11-live-cloud-execution/infrastructure` + CI workflows |
-| L4 | Product repositories under the MindReply / A11-K estate |
-| L5 | Integration adapters and connector-specific services |
-| L6 | Operational research / validation services |
-| L7 | Private financial-control surfaces |
+1. Models are execution resources; they never own policy or authority.
+2. This repository implements services; it does not define the enterprise source of truth.
+3. Owner approvals and production-control decisions belong to `agent-control-plane`.
+4. Product/customer data belongs in the appropriate product root, not in private operational control storage.
+5. Credentials never belong in repository content.
+6. Production status requires current deployment, routing, health and smoke evidence.
+7. Irreversible actions fail closed until the required approval is present.
 
 ## Execution contract
 
-For each component:
+**Discover → Classify → Protect → Build → Validate → Approve (if required) → Deploy → Verify → Record → Monitor → Recover/Roll back.**
 
-**Discover → Protect → Build → Deploy → Verify → Record → Monitor → Roll back if required.**
+## Service readiness
 
-This architecture is the canonical reference for future repository, deployment, automation, and control-plane work. New components should map to an existing layer before being introduced as a new top-level branch.
+This repository should be treated as an execution component until its deployment, API health, security controls, evidence flow and rollback path are independently verified. Documentation or repository presence alone does not establish `LIVE` status.
