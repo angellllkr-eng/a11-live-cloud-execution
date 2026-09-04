@@ -14,64 +14,74 @@ A sovereign, multi-model reasoning system with governed ingestion, hybrid search
 - GTM artifacts: Auto-generating
 - Beta launch: Target Sept 1, 2026
 
+## Canonical Enterprise Architecture
+
+The Enterprise Tree is now normalized into an executable layered architecture covering governance, the A11 control plane, security/evidence, cloud infrastructure, products, external trust adapters, physical execution, and finance.
+
+**Architecture:** [`docs/ENTERPRISE_ARCHITECTURE.md`](docs/ENTERPRISE_ARCHITECTURE.md)
+
+Core rule: **models are execution resources, not owners; external legal/financial systems are trust adapters; production status is evidence-based.**
+
 ## Architecture
 
 ```
-User/Operator (A.K., Sofia)
+User/Operator
     │
-    ├─ A11: Sovereign Reasoning + RAG Orchestration
-    │   ├─ Multi-model routing (Gemini 3.7 → Grok 6 fallback)
-    │   ├─ Hybrid search (vector + BM25)
-    │   └─ Uncertainty assessment + escalation
+    ├─ L0 Governance & Authority
+    │   ├─ Approval policy
+    │   ├─ Operating policies
+    │   └─ Protected identity / credential vault
     │
-    ├─ Halo: Ingestion + Pipeline Automation
-    │   ├─ Chunk → Embed → Store (deterministic)
-    │   ├─ Gemini Embeddings API
-    │   └─ Evidence signing (Ed25519)
+    ├─ L1 A11 Control Plane
+    │   ├─ CEO command interface
+    │   ├─ Multi-model command matrix
+    │   ├─ Agent lifecycle / swap policy
+    │   ├─ Decision / escalation engine
+    │   └─ State & capability registry
     │
-    └─ Echo: Evidence Logging + Governance
-        ├─ Governance rules engine (hard constraints)
-        ├─ Immutable BigQuery audit log
-        └─ .epack export + signature verification
-
-Deployment: Google Cloud (Cloud Run, Cloud SQL, BigQuery, Cloud Tasks)
-Models: Gemini 3.7, Grok 6, Sol 5.6, NVIDIA Pro
-Revenue Model: Per-namespace subscription + usage tiers
+    ├─ L2 Security & Evidence
+    │   ├─ Zero-trust + isolation
+    │   ├─ Hardware MFA
+    │   ├─ Deterministic hashing
+    │   ├─ Append-only audit
+    │   └─ Signed .epack evidence
+    │
+    ├─ L3 Cloud & Delivery Infrastructure
+    │   ├─ GitHub / CI
+    │   ├─ Vercel / edge
+    │   ├─ Database / state
+    │   ├─ n8n / automation
+    │   └─ Monitoring / rollback
+    │
+    ├─ L4 Digital Product Estate
+    │   ├─ MindReply
+    │   ├─ A11-K
+    │   ├─ AUREL
+    │   └─ Innovation / commerce assets
+    │
+    ├─ L5 External Systems & Trust Adapters
+    │   ├─ Registries / signatures
+    │   ├─ Payments / settlement
+    │   └─ Third-party APIs
+    │
+    ├─ L6 Physical Execution
+    │   ├─ Site / connectivity validation
+    │   └─ Logistics / safety metrics
+    │
+    └─ L7 Finance & Commercial Operations
+        ├─ Revenue / subscriptions
+        ├─ Treasury / settlement
+        ├─ Asset valuation
+        └─ Financial reporting
 ```
 
-## Quick Start
+## Design rules
 
-```bash
-# 1. Clone
-git clone https://github.com/angellllkr-eng/a11-live-cloud-execution
-cd a11-live-cloud-execution
-
-# 2. Setup
-pip install -r requirements.txt
-export GOOGLE_APPLICATION_CREDENTIALS=path/to/gcp-key.json
-
-# 3. Run local
-python -m a11.main
-
-# 4. Test ingestion
-curl -X POST http://localhost:8000/ingest \
-  -H "Content-Type: application/json" \
-  -d '{
-    "namespace": "test:docs",
-    "owner": "demo-user",
-    "text": "Your document here...",
-    "source": "internal-docs"
-  }'
-
-# 5. Query
-curl -X POST http://localhost:8000/query \
-  -H "Content-Type: application/json" \
-  -d '{
-    "namespace": "test:docs",
-    "question": "What is the authorization flow?",
-    "actor": "demo-user"
-  }'
-```
+- Multi-model routing belongs inside the A11 control plane.
+- Sensitive identity material is kept outside the architecture graph.
+- Irreversible operations require the required approval checkpoint.
+- Significant changes generate auditable evidence.
+- LIVE means deployment + routing + health + smoke verification, not merely source availability.
 
 ## Module Structure
 
@@ -104,7 +114,7 @@ a11_live_cloud_execution/
 │   └── deps.py                # Dependencies
 ├── tests/                     # Test suite
 ├── config.py                  # Configuration
-├── requirements.txt           # Python dependencies
+├── requirements.txt            # Python dependencies
 └── docker-compose.yml         # Local dev stack
 
 ```
@@ -191,7 +201,7 @@ Proprietary (MindReply) — License TBD
 
 ## Contact
 
-- Founder/Operator: A.K. (Sofia)
+- Founder/Operator: A.K.
 - GitHub: @angellllkr-eng
 - Email: (TBD)
 
