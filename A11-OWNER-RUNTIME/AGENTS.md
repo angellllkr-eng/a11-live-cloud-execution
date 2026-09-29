@@ -23,7 +23,7 @@ Config source of truth:
 * READY
 * BLOCKED
 * FAILED
-* UNVERIFIED
+* pending_evidence
 * GATED
 
 ## Every agent must
