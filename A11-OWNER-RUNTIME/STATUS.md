@@ -48,7 +48,7 @@ Role of this folder: inspection/download snapshot — not canonical active sourc
 
 * Billing disabled on `mind-reply-496111`
 * ADC missing
-* `GE_APP_ID=UNVERIFIED`
+* `GE_APP_ID=pending_evidence`
 * Discovery Engine API not enabled
 
 ## Agent law
