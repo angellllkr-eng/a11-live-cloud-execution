@@ -36,7 +36,7 @@ cd C:\Users\ANGEL\OneDrive\Desktop\google-cloud-ceo-stack-2026-08-23
 | billing | BLOCKED |
 | ADC | BLOCKED |
 | discoveryengine API | BLOCKED |
-| GE_APP_ID | UNVERIFIED |
+| GE_APP_ID | pending_evidence |
 | cloud mutation | GATED |
 
 ## Owner-gated sequence before remote AlphaEvolve
@@ -47,7 +47,7 @@ cd C:\Users\ANGEL\OneDrive\Desktop\google-cloud-ceo-stack-2026-08-23
    gcloud auth application-default login
    ```
 3. Provision/obtain the real Gemini Enterprise AlphaEvolve App/Engine ID.
-4. Replace only `GE_APP_ID=UNVERIFIED` in `A11-OWNER-RUNTIME\circle-packing.env`.
+4. Replace only `GE_APP_ID=pending_evidence` in `A11-OWNER-RUNTIME\circle-packing.env`.
 5. Re-run:
    ```powershell
    .\A11-OWNER-RUNTIME\CLOUD-PREFLIGHT.ps1
